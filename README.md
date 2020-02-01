@@ -1,0 +1,48 @@
+# gskbuild
+
+A Docker container for building an installable zip of [Site Kit by Google](https://github.com/google/site-kit-wp/)
+
+## Basic Usage
+
+```
+$ docker run --rm -it -v "$PWD:/tmp/artifacts" aaemnnosttv/gskbuild
+```
+
+This builds the latest version of the plugin from the `develop` branch and copies the zip file into the current directory on the host machine.
+
+**Building a Specific Branch**
+
+To build from a branch other than the default, the branch name can be set using the `BRANCH` environment variable:
+
+```
+$ docker run --rm -it -v "$PWD:/tmp/artifacts" -e BRANCH=master aaemnnosttv/gskbuild
+```
+
+This builds the latest version of the plugin from the `master` branch and copies the zip file into the current directory on the host machine.
+
+## Advanced Usage
+
+### Speeding Up the Build
+
+By default, the repository source and all dependencies are downloaded and installed on every run. This can be a bit more performant by sharing local cache from the host machine.
+
+```diff
+  $ docker run --rm -it -v "$PWD:/tmp/artifacts" \
++   -v "$(composer global config cache-dir):/home/worker/.composer/cache" \
++   -v "$HOME/.npm:/home/worker/.npm" \
++   -v "$HOME/.nvm/versions:/home/worker/.nvm/versions" \
+    aaemnnosttv/gskbuild
+```
+
+### Using Local Source
+
+To build a branch that only exists locally, or to save time cloning via HTTP, the repository source can be mounted into the container instead:
+
+```diff
+  $ docker run --rm -it -v "$PWD:/tmp/artifacts" \
++   -v "local/path/to/repo:/app" \
++   -e REPO_SRC=file:///app \
+    aaemnnosttv/gskbuild
+```
+
+The build will clone the repo internally using the current branch so only committed changes will be built.
