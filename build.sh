@@ -36,7 +36,7 @@ source "$HOME/.nvm/nvm.sh" --no-use
 nvm install
 
 ## Install Composer packages.
-## Mount `-v "$(composer config cache-dir):/home/working/.composer/cache"` to use package cache from host machine.
+## Mount `-v "$(composer global config cache-dir):/home/working/.composer/cache"` to use package cache from host machine.
 composer install --no-dev
 
 ## Install node modules.
