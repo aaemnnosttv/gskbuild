@@ -4,7 +4,6 @@ ENV LANG=C.UTF-8
 ENV ARTIFACTS_DIR=/tmp/artifacts
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV REPO_SRC=https://github.com/google/site-kit-wp.git
 
 # Install software-properties-common to provide `add-apt-repository`.
 RUN apt-get update -q && apt-get install -yq --no-install-recommends software-properties-common

@@ -2,11 +2,16 @@
 
 set -euo pipefail
 
+# Define the repository source.
+## To use a local source, mount the repo to /app, prefixed with file://
+## `-v "file://local/path/to/repo:/app"`
+REPO_SRC=${REPO_SRC-https://github.com/google/site-kit-wp.git}
+
 # Get the branch name to build.
 ## Set explicitly using `-e BRANCH=branch-name-to-build`
 ## Defaults to the current branch if mounted into the working directory,
 ## otherwise uses the default branch 'develop'.
-if [ -z "$BRANCH" ]; then
+if [ -z "${BRANCH-}" ]; then
     # Use branch of mounted source
     if [ -d "$PWD/.git" ]; then
         BRANCH="$(git rev-parse --abbrev-ref HEAD)"
