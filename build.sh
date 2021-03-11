@@ -44,7 +44,7 @@ npm ci
 composer install --no-dev --no-interaction --no-progress
 
 # Build the distributable.
-npm run release-zip
+npm run "${BUILD_SCRIPT-release-zip}"
 
 # Copy the generated zip file to the artifacts directory.
 ## Mount `-v "/local/output/dir:/tmp/artifacts"` to make artifacts available on the host machine.

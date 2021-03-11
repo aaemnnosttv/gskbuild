@@ -20,6 +20,16 @@ $ docker run --rm -it -v "$PWD:/tmp/artifacts" -e BRANCH=master aaemnnosttv/gskb
 
 This builds the latest version of the plugin from the `master` branch and copies the zip file into the current directory on the host machine.
 
+**Performing an Alternate Build**
+
+By default, a release zip is built but the npm script invoked for the build can be changed by setting the `BUILD_SCRIPT` environment variable:
+
+```
+$ docker run --rm -it -v "$PWD:/tmp/artifacts" -e BUILD_SCRIPT=dev-zip aaemnnosttv/gskbuild
+```
+
+This would produce a development build of the zip file instead of the default production build.
+
 ## Advanced Usage
 
 ### Speeding Up the Build
