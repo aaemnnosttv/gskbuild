@@ -41,7 +41,7 @@ USER worker
 
 # Install nvm as worker user.
 ## Node binaries and modules will be installed in user-owned directories.
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 WORKDIR /app
 
