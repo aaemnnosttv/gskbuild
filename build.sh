@@ -35,13 +35,13 @@ source "$HOME/.nvm/nvm.sh" --no-use
 ## Install the required version of node according to .nvmrc.
 nvm install
 
-## Install Composer packages.
-## Mount `-v "$(composer global config cache-dir):/home/working/.composer/cache"` to use package cache from host machine.
-composer install --no-dev
-
 ## Install node modules.
 ## Mount `-v "$HOME/.npm:/home/working/.npm"` to use package cache of host machine.
 npm ci
+
+## Install Composer packages.
+## Mount `-v "$(composer global config cache-dir):/home/working/.composer/cache"` to use package cache from host machine.
+composer install --no-dev --no-interaction --no-progress
 
 # Build the distributable.
 npm run release-zip
